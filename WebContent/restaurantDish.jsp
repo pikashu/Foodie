@@ -7,34 +7,50 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Most Popular Dish</title>
+<title></title>
 </head>
 <body>
-<%      
-	List<String> list = new ArrayList<String>();
+<% 
 
 	try {
 
-
-
 	    	//Create a connection string
-			//String url = "jdbc:mysql://your_VM:3306/your_db";
 	    	String url = "jdbc:mysql://cs336-project.cfggfuy1dj7z.us-east-1.rds.amazonaws.com:3306/foodie_project";
-	    	//Load JDBC driver - the interface standardizing the connection procedure. Look at WEB-INF\lib for a mysql connector jar file, otherwise it fails.
 		    Class.forName("com.mysql.jdbc.Driver");
 	    
 	    	//Create a connection to your DB
 		    Connection con = DriverManager.getConnection(url, "masteruser", "masteruser");
-	    	//Create a SQL statement
 		    Statement stmt = con.createStatement();
-	    	//Get the selected radio button from the HelloWorld.jsp
-	    	String restaurant = request.getParameter("restaurant");
-	    	//Make a SELECT query from the table specified by the 'command' parameter at the HelloWorld.jsp
-	    	String str = "select r.Food, avg(r.Rating) as avg_rating "
-						+ "FROM ratings r "
-						+ "WHERE r.Restaurant = '" + restaurant
-						+ "' GROUP BY r.Food "
-						+ "ORDER BY avg_rating desc";
+	    	String food = request.getParameter("food");
+	    	String state = request.getParameter("state");
+	    	
+	    	System.out.println(state);
+	    	
+	    	String str = "SELECT RA.Restaurant, RA.Food, AVG(RA.Rating) as avg_rating "
+	    		+ "FROM ratings RA "
+				+ "INNER JOIN restaurants RE "
+				+ "ON RA.Restaurant = RE.Name "
+				+ "WHERE RE.State = '"
+				+ state
+				+ "' AND RA.Food LIKE CONCAT('%', '"
+				+ food
+				+ "', '%') "
+				+ "GROUP BY RA.Restaurant, RA.Food "
+				+ "ORDER BY avg_rating DESC";
+	    	
+	    	if (state.equals("")){
+	    		str = "SELECT RA.Restaurant, RA.Food, AVG(RA.Rating) as avg_rating "
+	    	    		+ "FROM ratings RA "
+	    				+ "INNER JOIN restaurants RE "
+	    				+ "WHERE RA.Food LIKE CONCAT('%', '"
+	    				+ food
+	    				+ "', '%') "
+	    				+ "GROUP BY RA.Restaurant, RA.Food "
+	    				+ "ORDER BY avg_rating DESC";
+	    	}
+	    	
+	    	System.out.println(str);
+				
 	    	//Run the query against the database.
 		    ResultSet result = stmt.executeQuery(str);
 		   
@@ -42,7 +58,10 @@
 		    out.print("<table>");
 	    	out.print("<tr>");
 	    	out.print("<td>");
-	    	out.print("Name of Dish");
+	    	out.print("Restaurant");
+	    	out.print("</td>");
+	    	out.print("<td>");
+	    	out.print("Food");
 	    	out.print("</td>");
 	    	out.print("<td>");
 	    	out.print("Average Rating");
@@ -51,6 +70,9 @@
 	    	
 	    	while(result.next()){
 	    		out.print("<tr>");
+	    		out.print("<td>");
+	    		out.print(result.getString("Restaurant"));
+	    		out.print("</td>");
 	    		out.print("<td>");
 	    		out.print(result.getString("Food"));
 	    		out.print("</td>");

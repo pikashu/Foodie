@@ -16,27 +16,58 @@
 <!-- QUERIES -->
 <h4 align="left"><b> Custom Queries </b></h4>
 <form method="get" action="dishState.jsp" enctype=text/plain>
-	Find the most populator dishes in <input type="text" name="state" placeholder="Enter Full State Name"/>
+	Find the most popular dishes in <input type="text" name="state" placeholder="Enter Full State Name" required/>
 	<input type="submit" value="submit" />
 </form>
 
 <br>
 
 <form method="get" action="dishRestaurant.jsp" enctype=text/plain>
-	Find the most popular dishes at <input type="text" name="restaurant" placeholder="Enter Restaurant Name"/>
+	Find the most popular dishes at <input type="text" name="restaurant" placeholder="Enter Restaurant Name" required/>
 	<input type="submit" value="submit"/>
 </form>
 
 <br>
 
 <form method="get" action="dishAge.jsp" enctype=text/plain>
-	Find the most popular dishes for users around the age of <input type="text" name="age" placeholder="Enter an Age"/>
+	Find the most popular dishes for users around the age of <input type="text" name="age" placeholder="Enter an Age" required/>
 	<input type="submit" value="submit"/>
 </form>
 
 <br>
 
+<form method="get" action="restaurantDish.jsp" enctype=text/plain>
+	Find which restaurant serves the best <input type="text" name="food" placeholder="Enter a dish" required/> in <input type="text" name="state" placeholder="Enter a State or nothing"/>
+	<input type="submit" value="submit"/>
+</form>
 
+<br>
+
+<form method="get" action="dishCuisine.jsp" enctype=text/plain>
+	Find the best dish among <input type="text" name="cuisine" placeholder="ie. American, Mexican, etc." required/> cuisine.
+	<input type="submit" value="submit"/>
+</form>
+
+<br>
+
+<form method="get" action="restaurantCuisine.jsp" enctype=text/plain>
+	Find the best restaurant that serves <input type="text" name="cuisine" placeholder="ie. Japanese, Chinese, etc." required/> in <input type="text" name="state" placeholder="Enter a State or nothing"/>
+	<input type="submit" value="submit"/>
+</form>
+
+<br>
+
+<form method="get" action="bestDish.jsp" enctype=text/plain>
+	Find the best <input type="text" name="cuisine" placeholder="ie. American, Chinese, etc."> dish in <input type="text" name="state" placeholder="ie. Texas, New York, etc."/> under $<input type="text" name="price" placeholder="ie. 5, 15, etc."/>
+	<input type="submit" value="submit"/>
+</form>
+
+<br>
+
+<form method="get" action="contain.jsp" enctype=text/plain>
+	Check to see if <input type="text" name="restaurant" placeholder="Restaurant Name" required/> has <input type="text" name="food" placeholder="Menu Item" required />
+	<input type="submit" value="submit"/>
+</form>
 
 <br>
 
@@ -66,6 +97,7 @@
 </form>
 
 <br>
+
 <hr>
 
 <h3><b> View All </b></h3>
