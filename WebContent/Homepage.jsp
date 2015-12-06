@@ -30,7 +30,7 @@
 <br>
 
 <form method="get" action="dishAge.jsp" enctype=text/plain>
-	Find the most popular dishes for users around the age of <input type="text" name="age" placeholder="Enter an Age" required/>
+	Find the most popular dishes for users around the age of <input type="number" name="age" min="1" required/>
 	<input type="submit" value="submit"/>
 </form>
 
