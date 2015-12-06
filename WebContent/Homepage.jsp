@@ -58,7 +58,7 @@
 <br>
 
 <form method="get" action="bestDish.jsp" enctype=text/plain>
-	Find the best <input type="text" name="cuisine" placeholder="ie. American, Chinese, etc."> dish in <input type="text" name="state" placeholder="ie. Texas, New York, etc."/> under $<input type="text" name="price" placeholder="ie. 5, 15, etc."/>
+	Find the best <input type="text" name="cuisine" placeholder="ie. American, Chinese, etc."> dish in <input type="text" name="state" placeholder="ie. Texas, New York, etc."/> under $<input type="number" name="price" min="0"/>
 	<input type="submit" value="submit"/>
 </form>
 
