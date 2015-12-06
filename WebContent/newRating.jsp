@@ -6,9 +6,6 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Add a new rating</title>
 </head>
@@ -26,7 +23,7 @@
 	<td>Restaurant: </td><td><input type="text" name="restaurant" required/></td>
 	</tr>
 	<tr>
-	<td>Rating: </td><td><input type="text" name="rating" required/></td>
+	<td>Rating: </td><td><input type="number" name="rating" min="0" max="5" required/></td>
 	</tr>
 	</table>
 	<br>

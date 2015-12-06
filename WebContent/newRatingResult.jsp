@@ -51,35 +51,39 @@
 	    	return;
 	    }
 	    
-	    str = "SELECT * FROM menuitems WHERE menuitems.Food = '"
-	    		+ newFood
-	    		+ "'";
+	    str = "SELECT EXISTS( "
+    			+ "SELECT * FROM menuitems "
+    		    + "WHERE Restaurant = '"
+    		    + newRestaurant
+    		    + "' "
+    		    + "AND Food = '"
+    		    + newFood
+    		    + "') AS food_exists";
 	    
 	    result = stmt.executeQuery(str);
 	    
-	    if (result.next() == false )
-	    		
-	    		
-	    		
-	    		
-	    		
-	    		
+	    result.next();
 	    
-	    String insert = "INSERT INTO restaurants(Name, City, State, Cuisine)" +
+	    if (result.getString("food_exists").equals("0")){
+	    	out.print("That menu item doesn't exist! Could not add rating...");
+	    	return;
+	    }		
+	    
+	    String insert = "INSERT INTO ratings(Name, Food, Restaurant, Rating)" +
                 "VALUES (?, ?, ?, ?)";
 	    //Create a Prepared SQL statement allowing you to introduce the parameters of the query
 		PreparedStatement ps = con.prepareStatement(insert);
 		
 	    //Add parameters of the query. Start with 1, the 0-parameter is the INSERT statement itself
 		ps.setString(1, newName);
-		ps.setString(2, newCity);
-		ps.setString(3, newState);
-		ps.setString(4, newCuisine);
+		ps.setString(2, newFood);
+		ps.setString(3, newRestaurant);
+		ps.setString(4, newRating);
 		//Run the query against the DB
 		ps.executeUpdate();
 		
 		out.print("<br>");
-		out.print("Restaurant: " + newName + " added successfully!");
+		out.print("Rating " + newRating + " for " + newFood + " added successfully!");
 	} catch (Exception ex) {
 		out.print("insert failed");
 	}

@@ -20,7 +20,7 @@
 	<td>Food: </td><td><input type="text" name="food" required/></td>
 	</tr>
 	<tr>
-	<td>Price: $</td><td><input type="text" name="price" required/></td>
+	<td>Price: $</td><td><input type="number" name="price" min="0" required/></td>
 	</tr>
 	</table>
 	<br>
